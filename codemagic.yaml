@@ -6,6 +6,9 @@ workflows:
   simple-workflow:
     name: Native Android
     max_build_duration: 60
+    environment:
+      ndk: r22b
+      java: 1.8
     scripts:
 #      - name: Run tests
 #        script: ./gradlew test
