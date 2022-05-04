@@ -37,7 +37,7 @@ class Channel<T>(val capacity: Int = 1) : SendChannel<T>, ReceiveChannel<T> {
     private val empty: Boolean get() = buffer.isEmpty()
     private val full: Boolean get() = buffer.size == capacity
 
-    suspend override fun send(value: T): Unit = suspendCoroutine sc@ { c ->
+    override suspend fun send(value: T): Unit = suspendCoroutine sc@ { c ->
         var receiveWaiter: Waiter<T>? = null
         locked {
             check(!closed) { CHANNEL_CLOSED }
